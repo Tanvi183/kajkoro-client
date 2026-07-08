@@ -79,6 +79,16 @@ export function PublicFooter() {
                   Terms of Service
                 </Link>
               </li>
+              <li>
+                <Link href="/refund-policy" className="text-sm hover:text-emerald-400">
+                  Refund Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/cancellation-policy" className="text-sm hover:text-emerald-400">
+                  Cancellation Policy
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

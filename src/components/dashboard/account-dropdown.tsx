@@ -2,10 +2,22 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export function AccountDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
+  const handleLogout = () => {
+    setIsOpen(false);
+    // Clear any potential stored authentication tokens
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("token");
+    }
+    // Redirect to home page
+    router.push("/");
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -25,7 +37,7 @@ export function AccountDropdown() {
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-full border border-slate-200 bg-white py-1.5 pl-1.5 pr-3 hover:bg-slate-50 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:border-slate-800 dark:bg-slate-900 dark:hover:bg-slate-800"
+        className="flex items-center gap-2 rounded-full border border-slate-200 bg-white py-1.5 pl-1.5 pr-3 hover:bg-slate-50 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:border-slate-800 dark:bg-slate-900 dark:hover:bg-slate-800 cursor-pointer"
       >
         <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#6a9e40] text-sm font-bold text-white">
           M
@@ -81,8 +93,8 @@ export function AccountDropdown() {
 
           <div className="border-t border-slate-100 p-2 dark:border-slate-800">
             <button
-              onClick={() => setIsOpen(false)}
-              className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-[#d32f2f] hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
+              onClick={handleLogout}
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-[#d32f2f] hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors cursor-pointer"
             >
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
