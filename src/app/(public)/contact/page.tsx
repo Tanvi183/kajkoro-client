@@ -1,7 +1,61 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function ContactPage() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validation
+    if (!firstName.trim() || !lastName.trim()) {
+      toast.error("Please enter your full name.");
+      return;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    
+    if (message.trim().length < 10) {
+      toast.error("Message must be at least 10 characters long.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const name = `${firstName} ${lastName}`.trim();
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/contact`, {
+        name,
+        email,
+        message
+      });
+
+      toast.success("Message sent successfully! We'll get back to you soon.");
+      
+      // Reset form
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setMessage("");
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Failed to send message. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -52,29 +106,29 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-sm border border-slate-200 dark:border-slate-800">
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="first-name" className="block text-sm font-medium text-slate-700 dark:text-slate-300">First Name</label>
-                  <input type="text" id="first-name" className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 dark:bg-slate-950 dark:text-white dark:ring-slate-700" placeholder="John" />
+                  <input type="text" id="first-name" required value={firstName} onChange={(e) => setFirstName(e.target.value)} className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 dark:bg-slate-950 dark:text-white dark:ring-slate-700" placeholder="John" />
                 </div>
                 <div>
                   <label htmlFor="last-name" className="block text-sm font-medium text-slate-700 dark:text-slate-300">Last Name</label>
-                  <input type="text" id="last-name" className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 dark:bg-slate-950 dark:text-white dark:ring-slate-700" placeholder="Doe" />
+                  <input type="text" id="last-name" required value={lastName} onChange={(e) => setLastName(e.target.value)} className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 dark:bg-slate-950 dark:text-white dark:ring-slate-700" placeholder="Doe" />
                 </div>
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300">Email Address</label>
-                <input type="email" id="email" className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 dark:bg-slate-950 dark:text-white dark:ring-slate-700" placeholder="john@example.com" />
+                <input type="email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 dark:bg-slate-950 dark:text-white dark:ring-slate-700" placeholder="john@example.com" />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
-                <textarea id="message" rows={4} className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 dark:bg-slate-950 dark:text-white dark:ring-slate-700" placeholder="How can we help you?"></textarea>
+                <textarea id="message" required rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 dark:bg-slate-950 dark:text-white dark:ring-slate-700" placeholder="How can we help you?"></textarea>
               </div>
 
-              <Button type="button" className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold">
+              <Button type="submit" isLoading={isLoading} className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold">
                 Send Message
               </Button>
             </form>

@@ -40,6 +40,7 @@ export function AdminSidebar({ isOpen, onClose }: SidebarProps) {
 
   const secondaryLinks = [
     { label: "Support Tickets", icon: "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z", href: "/admin/dashboard/support" },
+    { label: "Contact Messages", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", href: "/admin/dashboard/contacts" },
     { label: "Platform Settings", icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z", href: "/admin/dashboard/settings" },
   ];
 
@@ -47,28 +48,28 @@ export function AdminSidebar({ isOpen, onClose }: SidebarProps) {
     <>
       {isOpen && (
         <div 
-          className="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm transition-opacity" 
+          className="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm transition-opacity lg:hidden" 
           aria-hidden="true"
           onClick={onClose}
         />
       )}
 
       <div 
-        className={`fixed inset-y-0 left-0 z-50 flex w-72 max-w-[calc(100%-3rem)] flex-col bg-white shadow-xl transition-transform duration-300 ease-in-out dark:bg-slate-950 ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-[#313a46] text-[#8391a2] shadow-xl transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800">
-          <Link href="/admin/dashboard" className="flex items-center gap-1" onClick={onClose}>
-            <span className="text-2xl font-bold tracking-tight text-[#0a2540] dark:text-white">
-              Kaj
+        {/* Sidebar Header / Logo */}
+        <div className="flex h-[70px] items-center justify-center border-b border-[#3e4855] px-6">
+          <Link href="/admin/dashboard" className="flex items-center gap-2" onClick={() => window.innerWidth < 1024 && onClose()}>
+            <span className="text-2xl font-bold tracking-tight text-white">
+              Kaj<span className="text-emerald-500">Koro</span>
             </span>
-            <span className="ml-2 rounded bg-purple-100 px-1.5 py-0.5 text-[10px] font-semibold text-purple-700 dark:bg-purple-900/50 dark:text-purple-400">Admin</span>
           </Link>
           <button 
             type="button" 
             onClick={onClose}
-            className="rounded-md p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-500 focus:outline-none dark:hover:bg-slate-800"
+            className="ml-auto block rounded-md p-2 text-slate-400 hover:text-white lg:hidden"
           >
             <span className="sr-only">Close menu</span>
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
@@ -77,28 +78,43 @@ export function AdminSidebar({ isOpen, onClose }: SidebarProps) {
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto pt-6 px-4 pb-20">
-          <nav className="space-y-1">
+        {/* User Info Wrapper (Optional in paces, but looks good) */}
+        <div className="flex items-center gap-3 border-b border-[#3e4855] p-6 text-sm">
+          <div className="h-10 w-10 flex-shrink-0 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg">
+            A
+          </div>
+          <div className="overflow-hidden">
+            <p className="truncate font-medium text-slate-200">Admin User</p>
+            <p className="truncate text-xs text-[#8391a2]">Administrator</p>
+          </div>
+        </div>
+
+        {/* Sidebar Menu */}
+        <div className="flex-1 overflow-y-auto px-3 py-6 sidebar-scroll">
+          <div className="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-[#8391a2]">
+            Navigation
+          </div>
+          <nav className="space-y-1 mb-8">
             {mainLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.label}
                   href={link.href}
-                  onClick={onClose}
-                  className={`group flex items-center gap-x-3 rounded-md px-3 py-3 text-sm font-semibold leading-6 transition-colors ${
+                  onClick={() => window.innerWidth < 1024 && onClose()}
+                  className={`group flex items-center gap-x-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
                     isActive 
-                      ? "bg-purple-600 text-white" 
-                      : "text-slate-700 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+                      ? "bg-[#3a4450] text-white" 
+                      : "text-[#8391a2] hover:bg-[#3a4450] hover:text-white"
                   }`}
                 >
                   <svg 
-                    className={`h-5 w-5 shrink-0 ${isActive ? "text-white" : "text-slate-400 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-300"}`} 
+                    className={`h-5 w-5 shrink-0 ${isActive ? "text-emerald-500" : "text-[#8391a2] group-hover:text-emerald-400"}`} 
                     fill="none" 
                     viewBox="0 0 24 24" 
                     stroke="currentColor"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={link.icon} />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={link.icon} />
                   </svg>
                   {link.label}
                 </Link>
@@ -106,8 +122,9 @@ export function AdminSidebar({ isOpen, onClose }: SidebarProps) {
             })}
           </nav>
 
-          <hr className="my-6 border-slate-100 dark:border-slate-800" />
-
+          <div className="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-[#8391a2]">
+            System
+          </div>
           <nav className="space-y-1">
             {secondaryLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -115,20 +132,20 @@ export function AdminSidebar({ isOpen, onClose }: SidebarProps) {
                 <Link
                   key={link.label}
                   href={link.href}
-                  onClick={onClose}
-                  className={`group flex items-center gap-x-3 rounded-md px-3 py-3 text-sm font-semibold leading-6 transition-colors ${
+                  onClick={() => window.innerWidth < 1024 && onClose()}
+                  className={`group flex items-center gap-x-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
                     isActive 
-                      ? "bg-purple-600 text-white" 
-                      : "text-slate-700 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+                      ? "bg-[#3a4450] text-white" 
+                      : "text-[#8391a2] hover:bg-[#3a4450] hover:text-white"
                   }`}
                 >
                   <svg 
-                    className={`h-5 w-5 shrink-0 ${isActive ? "text-white" : "text-slate-400 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-300"}`} 
+                    className={`h-5 w-5 shrink-0 ${isActive ? "text-emerald-500" : "text-[#8391a2] group-hover:text-emerald-400"}`} 
                     fill="none" 
                     viewBox="0 0 24 24" 
                     stroke="currentColor"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={link.icon} />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={link.icon} />
                   </svg>
                   {link.label}
                 </Link>
