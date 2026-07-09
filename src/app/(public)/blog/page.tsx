@@ -60,7 +60,7 @@ export default function BlogPage() {
                   <time dateTime={post.date} className="text-slate-500">
                     {post.date}
                   </time>
-                  <Badge variant="outline" className="rounded-full bg-slate-50 text-slate-600 dark:bg-slate-800 dark:text-slate-300 border-slate-200 dark:border-slate-700">
+                  <Badge className="rounded-full border bg-slate-50 text-slate-600 dark:bg-slate-800 dark:text-slate-300 border-slate-200 dark:border-slate-700">
                     {post.category}
                   </Badge>
                 </div>
