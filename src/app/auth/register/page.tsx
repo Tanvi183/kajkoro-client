@@ -3,6 +3,8 @@
 import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
@@ -14,15 +16,31 @@ function RegisterForm() {
   
   const [role, setRole] = useState<Role>(null);
   const [step, setStep] = useState<1 | 2>(1);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === "admin@gmail.com" && password === "12345678") {
-      router.push("/dashboard");
-    } else {
-      router.push("/dashboard"); // For demo purposes, any registration goes to dashboard
+    setIsLoading(true);
+
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
+        name,
+        email,
+        phone,
+        password,
+        role: role?.toUpperCase(),
+      });
+
+      toast.success("Account created successfully!");
+      router.push("/auth/login");
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Registration failed");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -89,43 +107,18 @@ function RegisterForm() {
 
           {step === 2 && (
             <form className="space-y-4" onSubmit={handleRegister}>
-              {role === "employer" && (
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="company">
-                    Company Name
-                  </label>
-                  <input
-                    id="company"
-                    type="text"
-                    required
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-                  />
-                </div>
-              )}
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="firstName">
-                    First Name
-                  </label>
-                  <input
-                    id="firstName"
-                    type="text"
-                    required
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="lastName">
-                    Last Name
-                  </label>
-                  <input
-                    id="lastName"
-                    type="text"
-                    required
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-                  />
-                </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="name">
+                  Full Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                />
               </div>
 
               <div>
@@ -138,6 +131,20 @@ function RegisterForm() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="phone">
+                  Phone Number
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
                 />
               </div>
@@ -156,26 +163,7 @@ function RegisterForm() {
                 />
               </div>
 
-              {role === "worker" && (
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="country">
-                    Country
-                  </label>
-                  <select
-                    id="country"
-                    required
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-                  >
-                    <option value="">Select your country</option>
-                    <option value="US">United States</option>
-                    <option value="UK">United Kingdom</option>
-                    <option value="IN">India</option>
-                    <option value="BD">Bangladesh</option>
-                  </select>
-                </div>
-              )}
-
-              <Button type="submit" className="w-full h-11 mt-6">
+              <Button type="submit" className="w-full h-11 mt-6" isLoading={isLoading}>
                 Create Account
               </Button>
             </form>
