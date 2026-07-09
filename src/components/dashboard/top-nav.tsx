@@ -7,9 +7,10 @@ import { NotificationDropdown } from "./notification-dropdown";
 
 interface TopNavProps {
   onMenuClick: () => void;
+  logoHref?: string;
 }
 
-export function TopNav({ onMenuClick }: TopNavProps) {
+export function TopNav({ onMenuClick, logoHref = "/" }: TopNavProps) {
   return (
     <header className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-slate-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8 dark:border-slate-800 dark:bg-slate-950">
       {/* Hamburger Menu (visible on all screens based on design, but typically acts as a toggle) */}
@@ -26,7 +27,7 @@ export function TopNav({ onMenuClick }: TopNavProps) {
 
       {/* Logo */}
       <div className="flex flex-1 items-center gap-2">
-        <Link href="/dashboard" className="flex items-center gap-1">
+        <Link href={logoHref} className="flex items-center gap-1">
           <span className="text-2xl font-bold tracking-tight text-[#0a2540] dark:text-white">
             Ajker<span className="text-[#059669]">kaj</span>
           </span>
