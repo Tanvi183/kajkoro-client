@@ -11,7 +11,7 @@ export default function AuthLayout({
       <header className="absolute top-0 w-full z-10 p-6">
         <Link href="/" className="flex items-center gap-1">
           <span className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-            Ajker<span className="text-emerald-600">kaj</span>
+            Kaj
           </span>
         </Link>
       </header>

@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 const BLOG_POSTS = [
   {
     id: 1,
-    title: "How to maximize your earnings on Ajkerkaj",
+    title: "How to maximize your earnings on KajKoro",
     excerpt: "Discover the top strategies used by our most successful workers to increase their daily task completion rate and boost income.",
     category: "Tips & Tricks",
     date: "Jul 10, 2026",
@@ -23,7 +23,7 @@ const BLOG_POSTS = [
   },
   {
     id: 3,
-    title: "Why Employers Choose Ajkerkaj for Campaign Growth",
+    title: "Why Employers Choose KajKoro for Campaign Growth",
     excerpt: "An inside look at how our platform guarantees authentic engagement and real results for advertisers worldwide.",
     category: "Platform News",
     date: "Jun 28, 2026",
@@ -38,7 +38,7 @@ export default function BlogPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Ajkerkaj <span className="text-emerald-600">Blog</span>
+            KajKoro <span className="text-emerald-600">Blog</span>
           </h1>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
             Insights, guides, and news to help you succeed in the gig economy.

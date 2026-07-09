@@ -9,7 +9,7 @@ export default function RefundPolicyPage() {
       
       <div className="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed">
         <p>
-          At Ajkerkaj, we strive to ensure a fair and transparent payment ecosystem. This Refund Policy explains how and when refunds are processed.
+          At KajKoro, we strive to ensure a fair and transparent payment ecosystem. This Refund Policy explains how and when refunds are processed.
         </p>
 
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">1. Unused Deposit Balances</h2>

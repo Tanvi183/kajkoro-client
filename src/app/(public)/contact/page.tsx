@@ -10,7 +10,7 @@ export default function ContactPage() {
             Get in Touch
           </h1>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
-            Have questions about Ajkerkaj? Our team is here to help you.
+            Have questions about KajKoro? Our team is here to help you.
           </p>
         </div>
 
@@ -28,7 +28,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-slate-900 dark:text-white">Email Support</h3>
-                  <p className="mt-1 text-slate-600 dark:text-slate-400">support@ajkerkaj.com</p>
+                  <p className="mt-1 text-slate-600 dark:text-slate-400">support@kajkoro.com</p>
                   <p className="mt-1 text-sm text-slate-500">We aim to reply within 24 hours.</p>
                 </div>
               </div>

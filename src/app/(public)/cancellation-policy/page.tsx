@@ -9,7 +9,7 @@ export default function CancellationPolicyPage() {
       
       <div className="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed">
         <p>
-          This Cancellation Policy governs the rules and procedures for canceling jobs, tasks, and campaigns on the Ajkerkaj platform.
+          This Cancellation Policy governs the rules and procedures for canceling jobs, tasks, and campaigns on the KajKoro platform.
         </p>
 
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">1. Employer Cancellations</h2>
@@ -24,7 +24,7 @@ export default function CancellationPolicyPage() {
 
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">3. System Auto-Cancellations</h2>
         <p>
-          Ajkerkaj reserves the right to automatically cancel campaigns that violate our Terms of Service (e.g., jobs asking for illegal activities, fake reviews, or requiring upfront payment from workers). In such cases, the employer's account may be penalized.
+          KajKoro reserves the right to automatically cancel campaigns that violate our Terms of Service (e.g., jobs asking for illegal activities, fake reviews, or requiring upfront payment from workers). In such cases, the employer's account may be penalized.
         </p>
 
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">4. Disputed Tasks</h2>

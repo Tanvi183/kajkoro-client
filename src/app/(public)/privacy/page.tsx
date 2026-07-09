@@ -9,7 +9,7 @@ export default function PrivacyPolicyPage() {
       
       <div className="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed">
         <p>
-          At Ajkerkaj, we take your privacy seriously. This Privacy Policy outlines how we collect, use, and protect your personal information when you use our gig marketplace and related services.
+          At KajKoro, we take your privacy seriously. This Privacy Policy outlines how we collect, use, and protect your personal information when you use our gig marketplace and related services.
         </p>
 
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">1. Information We Collect</h2>
@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
 
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">4. Cookies and Tracking</h2>
         <p>
-          We use cookies to keep you logged in, remember your preferences, and track analytics to improve user experience. You can disable cookies in your browser settings, but some features of Ajkerkaj may not function properly.
+          We use cookies to keep you logged in, remember your preferences, and track analytics to improve user experience. You can disable cookies in your browser settings, but some features of KajKoro may not function properly.
         </p>
 
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">5. Contact Us</h2>

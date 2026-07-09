@@ -68,7 +68,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800">
           <Link href="/dashboard" className="flex items-center gap-1" onClick={onClose}>
             <span className="text-2xl font-bold tracking-tight text-[#0a2540] dark:text-white">
-              Ajker<span className="text-[#059669]">kaj</span>
+              Kaj
             </span>
           </Link>
           <button 

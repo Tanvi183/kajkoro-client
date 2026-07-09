@@ -9,7 +9,7 @@ export function PublicFooter() {
           <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-1">
               <span className="text-2xl font-bold tracking-tight text-white">
-                Ajker<span className="text-emerald-500">kaj</span>
+                Kaj
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-slate-400">
@@ -95,7 +95,7 @@ export function PublicFooter() {
         
         <div className="mt-12 border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between">
           <p className="text-xs text-slate-500">
-            &copy; {new Date().getFullYear()} Ajkerkaj Marketplace. All rights reserved.
+            &copy; {new Date().getFullYear()} KajKoro Marketplace. All rights reserved.
           </p>
           <div className="mt-4 flex gap-4 sm:mt-0">
             <span className="h-6 w-6 rounded-full bg-slate-800" />

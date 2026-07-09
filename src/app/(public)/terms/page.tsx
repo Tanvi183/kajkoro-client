@@ -9,7 +9,7 @@ export default function TermsPage() {
       
       <div className="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed">
         <p>
-          Welcome to Ajkerkaj! By accessing or using our platform, you agree to comply with and be bound by the following Terms and Conditions.
+          Welcome to KajKoro! By accessing or using our platform, you agree to comply with and be bound by the following Terms and Conditions.
         </p>
 
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">1. Account Rules</h2>
@@ -29,7 +29,7 @@ export default function TermsPage() {
 
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">4. Platform Fees</h2>
         <p>
-          Ajkerkaj charges a nominal fee on withdrawals and deposits to cover operational and payment gateway costs. Specific fee structures are displayed during the respective transaction processes.
+          KajKoro charges a nominal fee on withdrawals and deposits to cover operational and payment gateway costs. Specific fee structures are displayed during the respective transaction processes.
         </p>
 
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">5. Termination</h2>

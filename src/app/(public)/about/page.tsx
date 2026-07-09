@@ -9,7 +9,7 @@ export default function AboutPage() {
       <section className="relative overflow-hidden bg-slate-900 py-20 sm:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            About <span className="text-emerald-500">Ajkerkaj</span>
+            About <span className="text-emerald-500">KajKoro</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300">
             We are building the most trusted hybrid marketplace for high-impact micro-jobs. Our mission is to connect skilled professionals with businesses that need real results.

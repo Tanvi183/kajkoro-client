@@ -29,7 +29,7 @@ export function TopNav({ onMenuClick, logoHref = "/" }: TopNavProps) {
       <div className="flex flex-1 items-center gap-2">
         <Link href={logoHref} className="flex items-center gap-1">
           <span className="text-2xl font-bold tracking-tight text-[#0a2540] dark:text-white">
-            Ajker<span className="text-[#059669]">kaj</span>
+            Kaj
           </span>
         </Link>
       </div>

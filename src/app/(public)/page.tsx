@@ -273,7 +273,7 @@ export default function Home() {
             
             <div className="relative rounded-2xl bg-white p-8 shadow-xl dark:bg-slate-800 sm:p-10 border-l-8 border-emerald-500">
               <blockquote className="text-xl font-semibold leading-8 text-slate-900 dark:text-white">
-                "The technical precision and payout reliability of Ajkerkaj is unparalleled in the micro-job sector."
+                "The technical precision and payout reliability of KajKoro is unparalleled in the micro-job sector."
               </blockquote>
               <div className="mt-8 flex items-center gap-4">
                 <div className="h-12 w-12 rounded-full bg-slate-200 dark:bg-slate-700" />

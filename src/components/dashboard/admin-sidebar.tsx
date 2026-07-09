@@ -61,7 +61,7 @@ export function AdminSidebar({ isOpen, onClose }: SidebarProps) {
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800">
           <Link href="/admin/dashboard" className="flex items-center gap-1" onClick={onClose}>
             <span className="text-2xl font-bold tracking-tight text-[#0a2540] dark:text-white">
-              Ajker<span className="text-[#059669]">kaj</span>
+              Kaj
             </span>
             <span className="ml-2 rounded bg-purple-100 px-1.5 py-0.5 text-[10px] font-semibold text-purple-700 dark:bg-purple-900/50 dark:text-purple-400">Admin</span>
           </Link>
